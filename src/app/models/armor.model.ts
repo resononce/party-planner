@@ -1,6 +1,6 @@
 
 
-export class Armor {
+export interface Armor {
      code : number;
      name : string;
      itemType : string;

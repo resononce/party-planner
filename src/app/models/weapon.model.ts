@@ -1,6 +1,6 @@
 
 
-export class Weapon {
+export interface Weapon {
     code: number;
     name: string;
     itemType: string;

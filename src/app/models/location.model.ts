@@ -1,6 +1,6 @@
 
 
-export class Location {
+export interface Location {
     code: number;
     name: string;
     areaType: string;

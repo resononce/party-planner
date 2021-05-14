@@ -1,6 +1,6 @@
 
 
-export class Misc {
+export interface Misc {
     code : number;
     name : string;
     itemType :  string;
