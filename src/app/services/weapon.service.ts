@@ -2,7 +2,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { ItemWeapon } from "../models/itemWeapon.model";
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { Weapon } from "../models/weapon.model";
 
 //curl -X GET "https://open-api.bser.io/v1/data/ItemWeapon" -H "accept: application/json" -H "x-api-key: kw4EJ6mGnDan79JbBZsJx5RJYfQcQLXc8XM2Aqej"
 
@@ -19,24 +20,26 @@ const httpOptions = {
 
 @Injectable()
 export class WeaponService {
-    test = [];
-    test1;
+    test;
 
     constructor(
         private http: HttpClient,
     ) {
     }
 
+    
 
-    async getAllWeapon() {
-        const result = this.http.get<Exclude<"code" | "message" | "data", "code" | "message">>('https://open-api.bser.io/v1/data/ItemWeapon', httpOptions).subscribe(weapons => {
-            console.log(weapons);
-          },
-          error => {
-            console.log(error);
-          });
-          
-        return result;
+    getAllWeapon() {
+        const res =  this.http.get<Omit< ItemWeapon, 'code' | 'message'>>('https://open-api.bser.io/v1/data/ItemWeapon', httpOptions)
+        .pipe(
+            tap(
+                data => this.test = data.data[0]
+            )
+        );
+
+        console.log(this.test);
+        return res;
+
     }
 
     getWeaponById(itemCode: number) {
