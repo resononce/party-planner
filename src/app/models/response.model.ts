@@ -1,7 +1,7 @@
-import { Armor } from "./armor.model";
-import { Misc } from "./misc.model";
-import { Weapon } from "./weapon.model";
-import { Location } from './location.model';
+import { Armor } from "./items/armor.model";
+import { Misc } from "./items";
+import { Weapon } from "./items";
+import { Location } from './items';
 
 export interface Response {
     code: number,

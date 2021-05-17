@@ -1,4 +1,4 @@
-import { Item } from ".";
+import { Item } from "./item.interface";
 
 
 export interface Armor extends Item{

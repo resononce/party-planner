@@ -1,6 +1,2 @@
-export * from './armor.model';
-export * from './weapon.model';
-export * from './misc.model';
+export * from './items';
 export * from './response.model';
-export * from './location.model';
-export * from './item.interface';
