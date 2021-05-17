@@ -1,8 +1,6 @@
+import { Item } from ".";
 
-
-export interface Misc {
-    code : number;
-    name : string;
+export interface Misc extends Item{
     itemType :  string;
     miscItemType : string;
     itemGrade : string;

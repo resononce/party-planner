@@ -1,8 +1,7 @@
+import { Item } from ".";
 
 
-export interface Armor {
-     code : number;
-     name : string;
+export interface Armor extends Item{
      itemType : string;
      armorType : string;
      itemGrade : string;

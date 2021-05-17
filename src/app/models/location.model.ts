@@ -1,8 +1,5 @@
-
-
-export interface Location {
-    code: number;
-    name: string;
+import { Item } from ".";
+export interface Location extends Item{
     areaType: string;
     areaCode: number;
     itemCode: number;
