@@ -1,33 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {WeaponService} from '../../services/weapon.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'party-planner';
-  array = [1,2,3,4,5,6,7,8,9,10]
-  constructor(){
-    this.sort(this.array, this.array.length);
+
+
+export class AppComponent implements OnInit{
+  
+  constructor(
+    private weaponService: WeaponService
+  ){
   }
 
-  sort(A: Array<number>, n: number ): Array<number> {
-    var count = 0;
-    var j = 0;
-    while(j < n-1){
-      var k = 0;
-      while(k < n-j-1 ){
-        if(A[k] < A[k+1]){
-          console.log(A.toString());
-          [A[k], A[k+1]] = [A[k+1], A[k]];
-          count++;
-        }
-        k++;
-      }
-      j++;
-    }
-    console.log(count);
-    return A;
+  ngOnInit() {
+    this.getAllWeapon();
+    this.getWeaponById();
   }
+
+  getAllWeapon() {
+    
+    return this.weaponService.getAllWeapon();
+  }
+
+  getWeaponById() {
+    this.weaponService.getWeaponById(101101);
+  }
+
 }
