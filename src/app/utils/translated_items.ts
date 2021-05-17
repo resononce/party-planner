@@ -1,4 +1,4 @@
-[
+export const tList = new Map([
     [
       101101,
       "Scissors"
@@ -2135,4 +2135,4 @@
       502502,
       "Smart Bomb"
     ]
-  ]
+  ]);
