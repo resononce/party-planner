@@ -10,7 +10,6 @@ import { Weapon, Response } from "../models";
 const apiKey = 'kw4EJ6mGnDan79JbBZsJx5RJYfQcQLXc8XM2Aqej';
 
 const httpHeader = {
-    'accept': 'application/json',
     'x-api-key': apiKey,  
 };
 const httpOptions = {
@@ -29,17 +28,8 @@ export class WeaponService {
 
     
 
-    getAllWeapon() {
-        const res =  this.http.get<Response>('https://open-api.bser.io/v1/data/ItemWeapon', httpOptions)
-        .pipe(
-            tap(
-                data => this.test = data.data
-            )
-        );
-
-        console.log(this.test);
-        return res;
-
+    getAllWeapon(): Observable<Response> {
+        return this.http.get<Response>('https://open-api.bser.io/v1/data/ItemWeapon', httpOptions);
     }
 
     getWeaponById(itemCode: number) {
