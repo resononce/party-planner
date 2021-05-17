@@ -23,7 +23,12 @@ export class AppComponent implements OnInit{
 
   getAllWeapon() {
     
-    return this.weaponService.getAllWeapon();
+    return this.weaponService.getAllWeapon().subscribe(weapons => {
+      console.log(weapons);
+    },
+    error => {
+      console.log(error);
+    });;
   }
 
   getWeaponById() {
