@@ -1,6 +1,7 @@
 import { Armor } from "./armor.model";
 import { Misc } from "./misc.model";
 import { Weapon } from "./weapon.model";
+import { Location } from './location.model';
 
 export interface Response {
     code: number,
