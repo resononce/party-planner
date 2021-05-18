@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/index';
-import { WeaponService } from './services/weapon.service';
+import { ArmorService, MiscService, WeaponService } from './services/';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,10 @@ import { WeaponService } from './services/weapon.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [WeaponService],
+  providers: [
+    WeaponService,
+    ArmorService, 
+    MiscService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
