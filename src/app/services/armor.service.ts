@@ -28,12 +28,7 @@ export class ArmorService extends httpSettings{
 
     getArmorById(itemCode: number): Observable<Armor> {
         return this.getAllArmor().pipe(
-            map(x => {
-                return x.find(y => {
-                    return y.code == itemCode;
-                })
-            }),
-        ); 
-    }
-
+            map(x => x.find(y => y.code == itemCode))
+        );
+        }
 }

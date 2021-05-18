@@ -29,11 +29,7 @@ export class MiscService extends httpSettings{
 
     getWMiscById(itemCode: number): Observable<Misc> {
         return this.getAllMisc().pipe(
-            map(x => {
-                return x.find(y => {
-                    return y.code == itemCode;
-                })
-            }),
+            map(x => x.find(y => y.code == itemCode)),
         ); 
     }
 

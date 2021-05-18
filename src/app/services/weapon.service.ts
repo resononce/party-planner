@@ -28,11 +28,7 @@ export class WeaponService extends httpSettings{
 
     getWeaponById(itemCode: number): Observable<Weapon> {
         return this.getAllWeapon().pipe(
-            map(x => {
-                return x.find(y => {
-                    return y.code == itemCode;
-                })
-            }),
+            map(x => x.find(y => y.code == itemCode)),
         ); 
     }
 }
