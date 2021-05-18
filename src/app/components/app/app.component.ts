@@ -10,29 +10,33 @@ import {WeaponService} from '../../services/weapon.service';
 
 
 export class AppComponent implements OnInit{
-  
+
   constructor(
     private weaponService: WeaponService
   ){
   }
 
   ngOnInit() {
-    this.getAllWeapon();
+    //this.getAllWeapon();
     this.getWeaponById();
   }
 
   getAllWeapon() {
-    
     return this.weaponService.getAllWeapon().subscribe(weapons => {
-      console.log(weapons.data);
+      console.log(weapons);
     },
     error => {
       console.log(error);
-    });;
+    });
   }
 
   getWeaponById() {
-    this.weaponService.getWeaponById(101101);
+    this.weaponService.getWeaponById(101201).subscribe(weapons => {
+      console.log(weapons);
+    },
+    error => {
+      console.log(error);
+    });
   }
 
 }
