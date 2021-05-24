@@ -5,5 +5,9 @@
 </div>
 
 <div>
-
+    <ng-container *ngIf='weaponsArray'>
+        <li *ngFor="let test of weaponsArray">
+            {{test | json}}
+        </li>
+    </ng-container>
 </div>
