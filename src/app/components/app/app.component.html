@@ -5,7 +5,7 @@
 </div>
 
 <div>
-    <ng-container *ngIf='weaponsArray'>
+    <ng-container *ngIf='weaponsArray | async as weaponsArray'>
         <li *ngFor="let test of weaponsArray">
             {{test | json}}
         </li>

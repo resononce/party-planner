@@ -10,8 +10,6 @@ const apiUrl = 'https://open-api.bser.io/v1/data/ItemWeapon';
 @Injectable()
 export class WeaponService extends httpSettings{
 
-    public readonly _weapons = new BehaviorSubject([]);
-
     constructor(
         private http: HttpClient,
     ) {
@@ -19,26 +17,12 @@ export class WeaponService extends httpSettings{
     }
 
     initializeWeaponArray() {
-        this.http.get<Response>(apiUrl, this.httpOptions).pipe(
+        return this.http.get<Response>(apiUrl, this.httpOptions).pipe(
             map(
                 res => {
                     return res.data as Array<Weapon>;
                 }
-            ),
-            tap(
-                data => {
-                    this._weapons.next(data);
-                }
             )
-        );
-    }
-
-    fetchByWeaponID(itemCode: number) {
-        return this._weapons.pipe(
-            map(x => {
-                console.log(x);
-                return x.find(y => y.code == itemCode);
-            }),
         );
     }
 

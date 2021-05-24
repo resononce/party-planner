@@ -22,22 +22,10 @@ export class AppComponent implements OnInit {
     private armorService: ArmorService,
     private miscService: MiscService,
   ) {
-    this.weaponService.initializeWeaponArray();
   }
 
   ngOnInit() {
-    this.weaponService._weapons.subscribe(weapons => {
-      console.log(weapons);
-      this.weaponsArray = weapons;
-    },
-      error => {
-        console.log(error);
-      });
-  }
-
-
-
-
-    
+    this.weaponsArray = this.weaponService.initializeWeaponArray();
+  } 
   
 }
