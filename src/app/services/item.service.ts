@@ -36,7 +36,7 @@ export class ItemService {
         console.log("whwhwhwh", this.combineAllItems()
             .toPromise()
             .then(res => {
-                console.log(res.get(116405).makeMaterial2);
+                console.log(res.get(116405)?.makeMaterial2);
             }    
             ));
 
@@ -44,7 +44,7 @@ export class ItemService {
     }
 
 
-    itemRecursion(itemCode: number = 0, itemArray) {
+    itemRecursion(itemCode: number = 0, itemArray: { get: (arg0: number) => any; }) {
         if (itemArray.get(116405)) {
 
         }
