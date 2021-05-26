@@ -29,7 +29,7 @@ export class MiscService extends httpSettings{
 
     }
 
-    fetchByMiscID(itemCode: number): Observable<Misc> {
+    fetchByMiscID(itemCode: number): Observable<Misc | undefined> {
         return this._miscs.pipe(
             map(x => {
                 console.log(x);

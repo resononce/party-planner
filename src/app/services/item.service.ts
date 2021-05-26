@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { combineLatest, Observable } from "rxjs";
+import { Observable, combineLatest } from "rxjs";
 import { map, tap } from "rxjs/operators";
+import { WeaponService, ArmorService, MiscService, ConsumableService } from ".";
 import { Item } from "../models";
-import { ArmorService } from "./armor.service";
-import { MiscService } from "./misc.service";
-import { WeaponService } from "./weapon.service";
+
 
 
 @Injectable()
@@ -13,16 +12,17 @@ export class ItemService {
     constructor(
         private weaponService: WeaponService,
         private armorService: ArmorService,
-        private miscService: MiscService
+        private miscService: MiscService,
+        private consumableService: ConsumableService,
     ) {
     }
 
 
     combineAllItems(): Observable<Map<number, Item>> {
 
-        return combineLatest([this.weaponService.initializeWeaponArray(), this.armorService.initializeArmorArray(), this.miscService.initializeMiscArray()]).pipe(
-            map( ([_weapons, _armors, _miscs]) => {
-                return new Map([..._weapons, ..._armors, ..._miscs].map(e => [e.code, e]));
+        return combineLatest([this.weaponService.initializeWeaponArray(), this.armorService.initializeArmorArray(), this.miscService.initializeMiscArray(), this.consumableService.initializeConsumableArray()]).pipe(
+            map( ([_weapons, _armors, _miscs, _consumable]) => {
+                return new Map([..._weapons, ..._armors, ..._miscs, ..._consumable].map(e => [e.code, e]));
             }),
             tap(res => {
                 console.log("test", res);
@@ -36,7 +36,8 @@ export class ItemService {
         console.log("whwhwhwh", this.combineAllItems()
             .toPromise()
             .then(res => {
-                console.log(res.get(116405)?.makeMaterial2);
+                console.log(res.get(401110)?.makeMaterial1);
+                console.log(this.itemRecursion(116405, res));
             }    
             ));
 
@@ -44,10 +45,13 @@ export class ItemService {
     }
 
 
-    itemRecursion(itemCode: number = 0, itemArray: { get: (arg0: number) => any; }) {
-        if (itemArray.get(116405)) {
-
+    itemRecursion(itemCode: number = 0, itemArray: { get: (arg0: number) => any; }): Object {
+        if (itemArray.get(itemCode).makeMaterial1 == 0) {
+            return {code: itemCode};
         }
+
+ 
+        return {code: itemCode, child: [this.itemRecursion(itemArray.get(itemCode).makeMaterial1, itemArray), this.itemRecursion(itemArray.get(itemCode).makeMaterial2, itemArray)]};
 
 
     }

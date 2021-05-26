@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/index';
 import { ArmorService, ItemService, MiscService, WeaponService } from './services/';
+import { ConsumableService } from './services/consumable.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ArmorService, ItemService, MiscService, WeaponService } from './service
     WeaponService,
     ArmorService, 
     MiscService,
-    ItemService],
+    ItemService,
+    ConsumableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

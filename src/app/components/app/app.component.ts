@@ -1,6 +1,8 @@
 import { ThrowStmt } from '@angular/compiler';
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Item, Weapon } from 'src/app/models';
 
 import { WeaponService, ArmorService, MiscService, ItemService } from '../../services';
 
@@ -15,7 +17,7 @@ import { WeaponService, ArmorService, MiscService, ItemService } from '../../ser
 
 export class AppComponent implements OnInit {
 
-  weaponsArray;
+  weaponsArray: Observable<Weapon[]> | undefined;
 
 
   constructor(
@@ -27,8 +29,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.weaponsArray = this.itemService.getMaterialList();
-
+    //this.weaponsArray = this.weaponService.initializeWeaponArray();
+    this.itemService.getMaterialList();
   } 
   
 }

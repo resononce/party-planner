@@ -1,10 +1,8 @@
-import { Armor } from "./items/armor.model";
-import { Misc } from "./items";
-import { Weapon } from "./items";
-import { Location } from './items';
+import { Armor, Consumable, Misc, Weapon } from ".";
+
 
 export interface Response {
     code: number,
-    data: Weapon | Location | Misc  | Armor | Array<Weapon | Location | Misc  | Armor>,
+    data: Weapon | Location | Misc  | Armor | Consumable | Array<Weapon | Location | Misc  | Armor | Consumable>,
     message: string,
 }

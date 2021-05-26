@@ -29,7 +29,7 @@ export class ArmorService extends httpSettings{
         );
     }
 
-    fetchByArmorID(itemCode: number): Observable<Armor> {
+    fetchByArmorID(itemCode: number): Observable<Armor | undefined> {
         return this._armors.pipe(
             map(x => {
                 console.log(x);
