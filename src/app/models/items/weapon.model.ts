@@ -8,8 +8,6 @@ export interface Weapon extends Item{
     craftAnimTrigger: string;
     stackable: number;
     initialCount: number;
-    makeMaterial1 : number;
-    makeMaterial2 : number;
     consumable : boolean;
     attackPower : number;
     defense : number;

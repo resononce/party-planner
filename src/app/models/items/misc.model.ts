@@ -8,6 +8,5 @@ export interface Misc extends Item{
     stackable : number;
     initialCount : number;
     exclusiveProducer : number;
-    makeMaterial1 : number;
-    makeMaterial2 : number
+
 }

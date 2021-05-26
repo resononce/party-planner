@@ -1,4 +1,4 @@
-import { Item } from "./item.interface";
+import { Item } from ".";
 
 
 export interface Armor extends Item{
@@ -8,8 +8,6 @@ export interface Armor extends Item{
      craftAnimTrigger : string;
      stackable : number;
      initialCount : number;
-     makeMaterialnumber : number;
-     makeMaterial2 : number;
      attackPower : number;
      defense : number;
      maxHp : number;
