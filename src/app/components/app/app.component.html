@@ -1,13 +1,27 @@
-<div>
-    <h1>
-        TEST
-    </h1>
-</div>
+<html>
 
-<div>
-    <ng-container *ngIf='weaponsArray | async as weaponsArray'>
-        <li *ngFor="let test of weaponsArray">
-            {{test | json}}
-        </li>
+<header>
+  <div class='nav-bar'>
+    <a class='active' href='http://localhost:4200/home'>
+      Items
+    </a>
+  </div>
+</header>
+
+
+
+
+<main class='container'>
+  <div class='itemlist' *ngIf='weaponsArray | async as weaponsArray'>
+    <ng-container *ngFor='let test of weaponsArray'>
+      {{tList.get(test.code) || test.name}}
     </ng-container>
-</div>
+  </div>
+
+  <mat-tab-group class='nav-tabs'>
+    <mat-tab class = 'nav-tab' label="Recipe">Recipe</mat-tab>
+    <mat-tab class = 'nav-tab' label="Map">Map</mat-tab>
+  </mat-tab-group>
+</main>
+
+</html>

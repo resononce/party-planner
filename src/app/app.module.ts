@@ -6,16 +6,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/index';
 import { ArmorService, ItemService, MiscService, WeaponService } from './services/';
 import { ConsumableService } from './services/consumable.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from 'angular-material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
+    AppComponent,   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
   ],
   providers: [
     WeaponService,

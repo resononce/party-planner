@@ -3,6 +3,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Item, Weapon } from 'src/app/models';
+import { tList } from 'src/app/utils'
 
 import { WeaponService, ArmorService, MiscService, ItemService } from '../../services';
 
@@ -17,20 +18,21 @@ import { WeaponService, ArmorService, MiscService, ItemService } from '../../ser
 
 export class AppComponent implements OnInit {
 
-  weaponsArray: Observable<Weapon[]> | undefined;
+  weaponsArray!: Observable<Weapon[]>;
+  tList = tList;
 
 
   constructor(
     private weaponService: WeaponService,
     private armorService: ArmorService,
     private miscService: MiscService,
-    private itemService: ItemService
+    private itemService: ItemService,
   ) {
   }
 
   ngOnInit() {
-    //this.weaponsArray = this.weaponService.initializeWeaponArray();
-    this.itemService.getMaterialList();
+    this.weaponsArray = this.weaponService.initializeWeaponArray();
+
   } 
   
 }
