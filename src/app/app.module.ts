@@ -8,6 +8,7 @@ import { ArmorService, ItemService, MiscService, WeaponService } from './service
 import { ConsumableService } from './services/consumable.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from 'angular-material.module';
+import { RouterService } from './services/router.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AngularMaterialModule } from 'angular-material.module';
     ArmorService, 
     MiscService,
     ItemService,
-    ConsumableService],
+    ConsumableService,
+    RouterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

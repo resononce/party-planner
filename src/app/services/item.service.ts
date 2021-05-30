@@ -20,26 +20,34 @@ export class ItemService {
 
     combineAllItems(): Observable<Map<number, Item>> {
         return combineLatest([this.weaponService.initializeWeaponArray(), this.armorService.initializeArmorArray(), this.miscService.initializeMiscArray(), this.consumableService.initializeConsumableArray()]).pipe(
-            map( ([_weapons, _armors, _miscs, _consumable]) => {
+            map(([_weapons, _armors, _miscs, _consumable]) => {
                 return new Map([..._weapons, ..._armors, ..._miscs, ..._consumable].map(e => [e.code, e]));
             }),
         )
     }
 
-    getMaterialList() {
+    getMaterialList(itemArray: number[]): Observable<Object> {
+
         return this.combineAllItems().pipe(
             map((res) => {
-                return this.itemRecursion(116405, res)
+                let craftedArray = []
+                for (let item of itemArray) {
+                    if (item == 0) {
+                        craftedArray.push(item);
+                    }
+                    craftedArray.push(this.itemRecursion(item, res));
+                }
+                return craftedArray;
             })
         )
     }
 
     itemRecursion(itemCode: number = 0, itemArray: { get: (arg0: number) => any; }): Object {
         if (itemArray.get(itemCode).makeMaterial1 == 0) {
-            return {code: itemCode};
+            return { code: itemCode };
         }
 
-        return {code: itemCode, child: [this.itemRecursion(itemArray.get(itemCode).makeMaterial1, itemArray), this.itemRecursion(itemArray.get(itemCode).makeMaterial2, itemArray)]};
+        return { code: itemCode, child: [this.itemRecursion(itemArray.get(itemCode).makeMaterial1, itemArray), this.itemRecursion(itemArray.get(itemCode).makeMaterial2, itemArray)] };
     }
 
 
