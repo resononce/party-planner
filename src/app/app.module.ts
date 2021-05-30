@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './components/index';
+import { AppComponent, RouterComponent } from './components/index';
 import { ArmorService, ItemService, MiscService, WeaponService } from './services/';
 import { ConsumableService } from './services/consumable.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,18 +12,19 @@ import { RouterService } from './services/router.service';
 
 @NgModule({
   declarations: [
-    AppComponent,   
+    AppComponent,
+    RouterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
   ],
   providers: [
     WeaponService,
-    ArmorService, 
+    ArmorService,
     MiscService,
     ItemService,
     ConsumableService,

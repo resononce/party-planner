@@ -11,24 +11,25 @@ import { WeaponService, ArmorService, MiscService, ItemService } from '../../ser
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './router.component.html',
+  styleUrls: ['./router.component.scss']
 })
-
-
-
-export class AppComponent implements OnInit {
+export class RouterComponent implements OnInit {
 
   weaponsArray!: Observable<Weapon[]>;
   tList = tList;
 
 
   constructor(
+    private weaponService: WeaponService,
+    private routerService: RouterService
   ) {
 
   }
 
   ngOnInit() {
+    this.weaponsArray = this.weaponService.initializeWeaponArray();
+    this.routerService.routeCreator().toPromise();
   }
 
 }
