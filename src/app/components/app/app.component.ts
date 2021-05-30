@@ -27,11 +27,12 @@ export class AppComponent implements OnInit {
     private weaponService: WeaponService,
     private routerService: RouterService
   ) {
+    
   }
 
   ngOnInit() {
     this.weaponsArray = this.weaponService.initializeWeaponArray();
-    this.routerService.routeCreator();
+    this.routerService.routeCreator().toPromise();
   } 
   
 }

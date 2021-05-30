@@ -15,18 +15,20 @@ export class RouterService {
 
     routeCreator(itemArray = [116405, 202405, 201405, 203407, 204408, 205303]) {
 
-        const material = this.itemService.getMaterialList(itemArray).pipe(
-            map(res => {
-
+        return this.itemService.getMaterialList(itemArray).pipe(
+            map(data => {
+                return data;
             }
-            )
-        )
-
-        this.itemService.getMaterialList(itemArray).subscribe(res => {
-            console.log(res);
-        }
+            ),
+            tap(res => {
+                console.log(res)
+            })
         )
         
+    }
+
+    childFinder() {
+
     }
 
     locationFinder(materialArray = []) {

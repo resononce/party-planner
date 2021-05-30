@@ -3,6 +3,7 @@ import { Observable, combineLatest } from "rxjs";
 import { map } from "rxjs/operators";
 import { WeaponService, ArmorService, MiscService, ConsumableService } from ".";
 import { Item } from "../models";
+import { TreeModel } from "../models/tree.model";
 
 
 
@@ -42,7 +43,7 @@ export class ItemService {
         )
     }
 
-    itemRecursion(itemCode: number = 0, itemArray: { get: (arg0: number) => any; }): Object {
+    itemRecursion(itemCode: number = 0, itemArray: { get: (arg0: number) => any; }): TreeModel {
         if (itemArray.get(itemCode).makeMaterial1 == 0) {
             return { code: itemCode };
         }
