@@ -1,8 +1,8 @@
-import { Armor, Consumable, Misc, Weapon } from ".";
+import { Armor, Consumable, Misc, Weapon, ItemLocation } from ".";
 
 
 export interface Response {
     code: number,
-    data: Weapon | Location | Misc  | Armor | Consumable | Array<Weapon | Location | Misc  | Armor | Consumable>,
+    data: Weapon | ItemLocation | Misc  | Armor | Consumable | Array<Weapon | ItemLocation | Misc  | Armor | Consumable>,
     message: string,
 }

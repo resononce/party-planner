@@ -28,8 +28,8 @@ export class RouterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.weaponsArray = this.weaponService.initializeWeaponArray();
-    this.routerService.routeCreator().toPromise();
+    //this.weaponsArray = this.weaponService.initializeWeaponArray();
+    this.routerService.routeCreator().subscribe();
   }
 
 }

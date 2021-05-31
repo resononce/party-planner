@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { Observable } from "rxjs";
 import { map, tap } from 'rxjs/operators';
 import { Response, Weapon } from "../models";
 import { httpSettings } from "../utils";
@@ -16,7 +16,7 @@ export class WeaponService extends httpSettings{
         super();
     }
 
-    initializeWeaponArray() {
+    initializeWeaponArray(): Observable<Weapon[]> {
         return this.http.get<Response>(apiUrl, this.httpOptions).pipe(
             map(
                 res => {

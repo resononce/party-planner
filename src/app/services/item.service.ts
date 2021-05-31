@@ -27,7 +27,7 @@ export class ItemService {
         )
     }
 
-    getMaterialList(itemArray: number[]): Observable<Object> {
+    getMaterialList(itemArray: number[]): Observable<Object[]> {
 
         return this.combineAllItems().pipe(
             map((res) => {

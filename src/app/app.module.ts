@@ -9,6 +9,7 @@ import { ConsumableService } from './services/consumable.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from 'angular-material.module';
 import { RouterService } from './services/router.service';
+import { LocationService } from './services/location.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RouterService } from './services/router.service';
     MiscService,
     ItemService,
     ConsumableService,
-    RouterService],
+    RouterService,
+    LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

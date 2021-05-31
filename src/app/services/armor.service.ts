@@ -9,17 +9,13 @@ const apiUrl = 'https://open-api.bser.io/v1/data/ItemArmor';
 
 @Injectable()
 export class ArmorService extends httpSettings{
-
-    public readonly _armors = new BehaviorSubject<Armor[]>([]);
-
-
     constructor(
         private http: HttpClient,
     ) {
         super();
     }
 
-    initializeArmorArray() {
+    initializeArmorArray(): Observable<Armor[]> {
         return this.http.get<Response>(apiUrl, this.httpOptions).pipe(
             map(
                 res => {
@@ -29,12 +25,4 @@ export class ArmorService extends httpSettings{
         );
     }
 
-    fetchByArmorID(itemCode: number): Observable<Armor | undefined> {
-        return this._armors.pipe(
-            map(x => {
-                console.log(x);
-                return x.find(y => y.code == itemCode);
-            }),
-        );
-    }
 }
