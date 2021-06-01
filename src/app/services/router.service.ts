@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { combineLatest } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { ItemLocation } from "../models";
 import { TreeModel } from "../models/tree.model";
@@ -12,49 +13,51 @@ import { LocationService } from "./location.service";
 export class RouterService {
     constructor(
         private itemService: ItemService,
-        private locationService: LocationService
-    ) {
+        private locationService: LocationService) {
 
     }
 
-    routeCreator(itemArray = [116405, 202405, 201405, 203407, 204408, 205303]) {
+    routeCreator(itemArray: number[] = [116405, 202405, 201405, 203407, 204408, 205303]) {
 
-        return this.itemService.getMaterialList(itemArray).pipe(
-            map(data => {
-                return this.locationFinder(data);
+        return combineLatest([this.itemService.getMaterialList(itemArray), this.locationService.formatLocationArray(), this.locationService.mapLocations()]).pipe(
+            map(([_materials, _locationArray, _locationMap]) => {
+                return this.locationFinder(_materials, _locationArray, _locationMap);
             }
             ),
-            tap(res => {
-                console.log(res)
-            })
         )
 
     }
 
-    locationFinder(materialArray: Object[]) {
-        let locations;
-        const materials: any[] = [];
+    locationFinder(materialArray: TreeModel[], locationArray: ItemLocation[][], locationMap: Map<number, string>) {
+        const materials: number[][] = [];
 
         for (let item of materialArray) {
             materials.push(this.childFinder(item));
         }
 
+        this.getMaterialLocation(materials, locationArray);
 
-        return locations;
+
+
+        return;
     }
 
-    childFinder(items: any): any {
+    childFinder(items: TreeModel): number[] { 
         if (!items.hasOwnProperty('child')) {
-            return items.code;
+            return [items.code];
         }
 
-        const materialArray = [this.childFinder(items.child![0]), this.childFinder(items.child![1])];
+        const materialArray = [...this.childFinder(items.child![0]), ...this.childFinder(items.child![1])];
 
-        return materialArray.reduce((acc, val) => acc.concat(val), []);
+        return materialArray;
     }
 
-    getMaterialLocation(materialArray: any, locationArray: number[]): any {
-        
+
+    /** fuck you */
+    getMaterialLocation(materialArray: number[][], locationArray: ItemLocation[][]): ItemLocation[][] {
+        return locationArray.filter(loc => loc.filter(item => materialArray.filter(res => {
+            return res.includes(item.itemCode)
+        })));
     }
 
 

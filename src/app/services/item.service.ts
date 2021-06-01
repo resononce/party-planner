@@ -27,13 +27,13 @@ export class ItemService {
         )
     }
 
-    getMaterialList(itemArray: number[]): Observable<Object[]> {
+    getMaterialList(itemArray: number[]): Observable<TreeModel[]> {
 
         return this.combineAllItems().pipe(
             map((res) => {
-                let craftedArray = []
+                let craftedArray: TreeModel[] = []
                 for (let item of itemArray) {
-                    if (item == 0) {
+                    if (item == null) {
                         craftedArray.push(item);
                     }
                     craftedArray.push(this.itemRecursion(item, res));
