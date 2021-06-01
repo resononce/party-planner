@@ -1,8 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Item, ItemLocation, Weapon } from 'src/app/models';
+import { Weapon } from 'src/app/models';
 import { LocationService } from 'src/app/services/location.service';
 import { RouterService } from 'src/app/services/router.service';
 import { tList } from 'src/app/utils'
@@ -25,13 +23,13 @@ export class RouterComponent implements OnInit {
   constructor(
     private weaponService: WeaponService,
     private routerService: RouterService,
-    private locationService: LocationService
+    private locationService: LocationService,
   ) {
 
   }
 
   ngOnInit() {
-    //this.weaponsArray = this.weaponService.initializeWeaponArray();
+    this.weaponsArray = this.weaponService.initializeWeaponArray();
     this.routerService.routeCreator().toPromise();
   }
 

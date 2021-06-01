@@ -6,6 +6,7 @@ import { Misc, Response } from "../models";
 import { httpSettings } from "../utils";
 
 const apiUrl = 'https://open-api.bser.io/v1/data/ItemMisc';
+const staticJSON = 'assets/ItemMisc.json';
 
 @Injectable()
 export class MiscService extends httpSettings{
@@ -19,7 +20,7 @@ export class MiscService extends httpSettings{
     }
     
     initializeMiscArray() {
-        return this.http.get<Response>(apiUrl, this.httpOptions).pipe(
+        return this.http.get<Response>(staticJSON, this.httpOptions).pipe(
             map(
                 res => {
                     return res.data as Array<Misc>;

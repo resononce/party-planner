@@ -6,6 +6,7 @@ import { Armor, Response } from "../models";
 import { httpSettings } from "../utils";
 
 const apiUrl = 'https://open-api.bser.io/v1/data/ItemArmor';
+const staticJSON = 'assets/ItemArmor.json';
 
 @Injectable()
 export class ArmorService extends httpSettings{
@@ -16,7 +17,7 @@ export class ArmorService extends httpSettings{
     }
 
     initializeArmorArray(): Observable<Armor[]> {
-        return this.http.get<Response>(apiUrl, this.httpOptions).pipe(
+        return this.http.get<Response>(staticJSON, this.httpOptions).pipe(
             map(
                 res => {
                     return res.data as Array<Armor>;

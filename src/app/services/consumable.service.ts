@@ -5,6 +5,7 @@ import { Consumable, Response } from "../models";
 import { httpSettings } from "../utils";
 
 const apiUrl = 'https://open-api.bser.io/v1/data/ItemConsumable';
+const staticJSON = 'assets/ItemConsumable.json';
 
 @Injectable()
 export class ConsumableService extends httpSettings{
@@ -16,7 +17,7 @@ export class ConsumableService extends httpSettings{
     }
 
     initializeConsumableArray() {
-        return this.http.get<Response>(apiUrl, this.httpOptions).pipe(
+        return this.http.get<Response>(staticJSON, this.httpOptions).pipe(
             map(
                 res => {
                     return res.data as Array<Consumable>;

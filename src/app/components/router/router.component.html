@@ -1,17 +1,17 @@
-<div class="item-list" *ngIf="weaponsArray | async as weaponsArray">
-  <button
-    class="item-button"
-    *ngFor="let test of weaponsArray"
-    mat-raised-button
-    matTooltip="{{ test | json }}"
-    aria-label="Button that displays a tooltip when focused or hovered over"
-    matTooltipPosition="above"
-  >
-    {{ tList.get(test.code) || test.name }}
-  </button>
+<div class="router">
+  <div class="item-list" >
+    <mat-grid-list cols="3" rowHeight="2:1">
+      <mat-grid-tile
+        *ngFor="let test of weaponsArray | async"
+      > 
+        <img class="png-icon" src="../../../assets/items/{{ tList.get(test.code) }}.png" alt="{{tList.get(test.code) || test.name}}">  
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  
+  <mat-tab-group class="nav-tabs">
+    <mat-tab class="nav-tab" label="Recipe">Recipe</mat-tab>
+    <mat-tab class="nav-tab" label="Map">Map</mat-tab>
+  </mat-tab-group>
 </div>
 
-<mat-tab-group class="nav-tabs">
-  <mat-tab class="nav-tab" label="Recipe">Recipe</mat-tab>
-  <mat-tab class="nav-tab" label="Map">Map</mat-tab>
-</mat-tab-group>

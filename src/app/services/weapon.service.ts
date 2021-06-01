@@ -6,6 +6,7 @@ import { Response, Weapon } from "../models";
 import { httpSettings } from "../utils";
 
 const apiUrl = 'https://open-api.bser.io/v1/data/ItemWeapon';
+const staticJSON = 'assets/ItemWeapon.json';
 
 @Injectable()
 export class WeaponService extends httpSettings{
@@ -17,7 +18,7 @@ export class WeaponService extends httpSettings{
     }
 
     initializeWeaponArray(): Observable<Weapon[]> {
-        return this.http.get<Response>(apiUrl, this.httpOptions).pipe(
+        return this.http.get<Response>(staticJSON, this.httpOptions).pipe(
             map(
                 res => {
                     return res.data as Array<Weapon>;
