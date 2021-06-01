@@ -2,7 +2,7 @@
   <div class="item-list" *ngIf="weaponsArray | async as weaponsArray">
     <ng-container *ngFor="let test of weaponsArray">
       <img
-        class="item"
+        class="item {{test.itemGrade}}"
         src="../../../assets/items/{{ tList.get(test.code) }}.png"
         alt="{{ tList.get(test.code) || test.name }}"
       />
