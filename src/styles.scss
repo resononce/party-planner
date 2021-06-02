@@ -38,21 +38,26 @@ $dark-theme: mat.define-dark-theme((
 ));
 
 
-.item.Common{
-  background-image: linear-gradient(rgb(41, 41, 41), grey);
-} 
-.item.Uncommon{
-  background-image: linear-gradient(green, grey);
-} 
-.item.Rare{
-  background-image: linear-gradient(blue, grey);
-} 
-.item.Epic{
-  background-image: linear-gradient(purple, grey);
-} 
-.item.Legend{
-  background-image: linear-gradient(gold, grey);
-} 
+.item.Common {
+  background-image: linear-gradient(rgb(43, 44, 45), rgb(90, 92, 95));
+  border: 1px solid rgb(105, 105, 105);
+}
+.item.Uncommon {
+  background-image: linear-gradient(rgb(39, 46, 33), rgb(70, 107, 73));
+  border: 1px solid rgb(104, 129, 76);
+}
+.item.Rare {
+  background-image: linear-gradient(rgb(40, 44, 59), rgb(52, 74, 108));
+  border: 1px solid rgb(70, 95, 135);
+}
+.item.Epic {
+  background-image: linear-gradient(rgb(47, 45, 65), rgb(99, 71, 133));
+  border: 1px solid rgb(144, 114, 194);
+}
+.item.Legend {
+  background-image: linear-gradient(rgb(45, 35, 30), rgba(185, 155, 75));
+  border: 1px solid rgba(166, 143, 74);
+}
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

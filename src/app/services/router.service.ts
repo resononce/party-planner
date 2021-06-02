@@ -73,7 +73,7 @@ export class RouterService {
         for(let i = 0; i < size - 1; i += 1) {
             this.permutator(locations, size - 1)
 
-            if (size % 2) {
+            if (size % 2 == 0) {
                 [locations[i], locations[size - 1]] = [locations[size - 1], locations[i]];
             }
             else {
