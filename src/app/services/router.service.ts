@@ -42,7 +42,7 @@ export class RouterService {
         return;
     }
 
-    childFinder(items: TreeModel): number[] { 
+    childFinder(items: TreeModel): number[] {
         if (!items.hasOwnProperty('child')) {
             return [items.code];
         }
@@ -60,26 +60,65 @@ export class RouterService {
         })));
     }
 
+    routeCombinations(locationArray: Array<string>, max: number): Array<Array<string>> {
+        let all: Array<Array<string>> = [];
+        for(let i = 0; i < max + 1; i++) {
+            this.combinationFunction(i, locationArray, [], all);
+        }
 
+        return all;
+    }
 
-
-    permutator(locations: any, size: number) {
-        
-        if (size == 1) {
-            console.log(locations);
+    combinationFunction(n: number, src: Array<string>, got: Array<string>, all: Array<Array<string>>) {
+        if(n == 0) {
+            if(got.length > 0) {
+                all[all.length] = got;
+            }
             return;
         }
-        
-        for(let i = 0; i < size - 1; i += 1) {
-            this.permutator(locations, size - 1)
 
-            if (size % 2 == 0) {
-                [locations[i], locations[size - 1]] = [locations[size - 1], locations[i]];
+        for(let j = 0; j < src.length; j++) {
+            this.combinationFunction(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
+        }
+
+        return;
+    }
+
+    permutator(locations: string[]) {
+
+        const bigBOI: Array<Array<string>> = []
+
+
+        let i, j, tmp;
+        let N = locations.length;
+
+        let p = new Array(N);
+
+        for (i = 0; i < N; i++) {
+            p[i] = 0;
+        }
+
+        i = 1;
+
+        bigBOI.push([...locations]);
+
+        while (i < N) {
+            if (p[i] < i) {
+                j = (i % 2) * p[i];
+                tmp = locations[j];
+                locations[j] = locations[i];
+                locations[i] = tmp;
+                bigBOI.push([...locations]);
+                p[i]++;
+                i = 1;
             }
             else {
-                [locations[0], locations[size - 1]] = [locations[size - 1], locations[0]]
+                p[i] = 0;
+                i++;
             }
         }
+
+        return bigBOI;
     }
 
 }

@@ -31,6 +31,22 @@ export class RouterComponent implements OnInit {
   ngOnInit() {
     this.weaponsArray = this.weaponService.initializeWeaponArray();
     //this.routerService.routeCreator().toPromise();
+
+    //this.routerService.test(['Alley', 'Temple', 'Avenue', 'Pond', 'Hospital', 'Archery Range', 'School', 'Cemetery', 'Factory', 'Hotel', 'Forest', 'Chapel', 'Beach', 'Uptown', 'Dock'])
+    console.time('doSomething')
+
+    console.log(this.test());
+
+    console.timeEnd('doSomething')
+  }
+
+  tester() {
+    return this.routerService.permutator(['Alley', 'Temple', 'Avenue', 'Pond']);
+
+  }
+
+  test() {
+    return this.routerService.routeCombinations(['Alley', 'Temple', 'Avenue', 'Pond', 'Hospital', 'Archery Range', 'School', 'Cemetery', 'Factory', 'Hotel', 'Forest', 'Chapel', 'Beach', 'Uptown', 'Dock'], 6)
   }
 
 }
