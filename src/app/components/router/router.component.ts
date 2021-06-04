@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Weapon } from 'src/app/models';
-import { LocationService } from 'src/app/services/location.service';
-import { RouterService } from 'src/app/services/router.service';
-import { tList } from 'src/app/utils'
-
-import { WeaponService, ArmorService, MiscService, ItemService } from '../../services';
-
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { Weapon } from "src/app/models";
+import { WeaponService, RouterService, LocationService } from "src/app/services";
+import { tList } from "src/app/utils";
 
 @Component({
   selector: 'app-root',
@@ -30,12 +26,12 @@ export class RouterComponent implements OnInit {
 
   ngOnInit() {
     this.weaponsArray = this.weaponService.initializeWeaponArray();
-    //this.routerService.routeCreator().toPromise();
+    //
 
     //this.routerService.test(['Alley', 'Temple', 'Avenue', 'Pond', 'Hospital', 'Archery Range', 'School', 'Cemetery', 'Factory', 'Hotel', 'Forest', 'Chapel', 'Beach', 'Uptown', 'Dock'])
     console.time('doSomething')
 
-    console.log(this.test());
+    this.routerService.routeCreator().toPromise();
 
     console.timeEnd('doSomething')
   }
@@ -46,7 +42,8 @@ export class RouterComponent implements OnInit {
   }
 
   test() {
-    return this.routerService.routeCombinations(['Alley', 'Temple', 'Avenue', 'Pond', 'Hospital', 'Archery Range', 'School', 'Cemetery', 'Factory', 'Hotel', 'Forest', 'Chapel', 'Beach', 'Uptown', 'Dock'], 6)
+    return this.routerService.routeCreator().toPromise();
+
   }
 
 }

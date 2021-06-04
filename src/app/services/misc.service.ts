@@ -11,8 +11,6 @@ const staticJSON = 'assets/ItemMisc.json';
 @Injectable()
 export class MiscService extends httpSettings{
 
-    public readonly _miscs = new BehaviorSubject<Misc[]>([]);
-
     constructor(
         private http: HttpClient,
     ) {
@@ -29,13 +27,5 @@ export class MiscService extends httpSettings{
         );
 
     }
-
-    fetchByMiscID(itemCode: number): Observable<Misc | undefined> {
-        return this._miscs.pipe(
-            map(x => {
-                console.log(x);
-                return x.find(y => y.code == itemCode);
-            }),
-        );
-    }
+    
 }

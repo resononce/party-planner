@@ -1,13 +1,8 @@
 import { Injectable } from "@angular/core";
 import { combineLatest } from "rxjs";
-import { map, tap } from "rxjs/operators";
-import { ItemLocation } from "../models";
-import { TreeModel } from "../models/tree.model";
-import { ItemService } from "./item.service";
-import { LocationService } from "./location.service";
-
-
-
+import { map } from "rxjs/operators";
+import { ItemService, LocationService } from ".";
+import { TreeModel, ItemLocation } from "../models";
 
 @Injectable()
 export class RouterService {
@@ -36,8 +31,7 @@ export class RouterService {
         }
 
         this.getMaterialLocation(materials, locationArray);
-
-
+        this.routeCombinations(this.getMaterialLocation(materials, locationArray), 15, materials)
 
         return;
     }
@@ -52,36 +46,50 @@ export class RouterService {
         return materialArray;
     }
 
-
     /** fuck you */
-    getMaterialLocation(materialArray: number[][], locationArray: ItemLocation[][]): ItemLocation[][] {
-        return locationArray.filter(loc => loc.filter(item => materialArray.filter(res => {
-            return res.includes(item.itemCode)
-        })));
+    getMaterialLocation(materialArray: number[][], locationArray: ItemLocation[][]): any {
+        return locationArray.map(data => {
+            return data.filter(obj => {
+                return materialArray.reduce((arr1, arr2) => arr1.concat(arr2)).includes(obj.itemCode);
+            })
+        });
     }
 
-    routeCombinations(locationArray: Array<string>, max: number): Array<Array<string>> {
+    routeCombinations(locationArray: Array<string>, max: number, materialArray: number[][]): Array<Array<string>> {
         let all: Array<Array<string>> = [];
-        for(let i = 0; i < max + 1; i++) {
-            this.combinationFunction(i, locationArray, [], all);
+        for (let i = 0; i < max + 1; i++) {
+            this.combinationFunction(i, locationArray, [], all, materialArray);
         }
 
         return all;
     }
 
-    combinationFunction(n: number, src: Array<string>, got: Array<string>, all: Array<Array<string>>) {
-        if(n == 0) {
-            if(got.length > 0) {
+    combinationFunction(n: number, src: Array<string>, got: Array<string>, all: Array<Array<string>>, materialArray: Array<Array<number>>) {
+        if (n == 0) {
+            if (got.length > 0 && this.checkIfItemCompleted(got, materialArray)) {
                 all[all.length] = got;
             }
             return;
         }
 
-        for(let j = 0; j < src.length; j++) {
-            this.combinationFunction(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
+        for (let j = 0; j < src.length; j++) {
+            this.combinationFunction(n - 1, src.slice(j + 1), got.concat([src[j]]), all, materialArray);
         }
 
         return;
+    }
+
+
+    checkIfItemCompleted(locationArray: Array<string>, materialArray: number[][]): boolean {
+        let itemCompleted: boolean = true
+
+        for (let i of locationArray) {
+
+        }
+
+
+
+        return itemCompleted;
     }
 
     permutator(locations: string[]) {
