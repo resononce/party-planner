@@ -50,15 +50,6 @@ export class LocationService extends httpSettings {
             })
         )
     }
-
-    mapLocations() {
-        return this.initializeLocationArray().pipe(
-            map(data => {
-                return new Map(data.map(res => [res.areaCode, res.areaType]))
-            })
-        );
-    }
-
 }
 
 
